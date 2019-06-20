@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.j1902.mapper.RepayMapper">
+    <resultMap id="repayMap" type="com.qf.j1902.pojo.Repay">
+        <!--private int repayid;
+    private String repaytype;
+    private String jine;
+    private String neirong;
+    private String picture;
+    private String repaycount;
+    private String xiangou;
+    private String yunfei;
+    private String fapiao;
+    private String repaytime;
+    private int projectid;-->
+        <id property="repayid" column="repayid"></id>
+        <result property="repaytype" column="repaytype"></result>
+        <result property="jine" column="jine"></result>
+        <result property="neirong" column="neirong"></result>
+        <result property="picture" column="picture"></result>
+        <result property="repaycount" column="repaycount"></result>
+        <result property="xiangou" column="xiangou"></result>
+        <result property="yunfei" column="yunfei"></result>
+        <result property="fapiao" column="fapiao"></result>
+        <result property="repaytime" column="repaytime"></result>
+        <result property="projectid" column="projectid"></result>
+    </resultMap>
+    <insert id="addRepay">
+        insert repay(repaytype,jine,neirong,picture,repaycount,xiangou,yunfei,fapiao,repaytime,projectid)
+         values(#{repaytype},#{jine},#{neirong},#{picture},#{repaycount},#{xiangou},#{yunfei},#{fapiao},#{repaytime},#{projectid})
+    </insert>
+    <select id="getRepayById" resultMap="repayMap" parameterType="int">
+        select * from repay where projectid=#{projectid}
+    </select>
+</mapper>

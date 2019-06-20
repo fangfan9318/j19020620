@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/theme.css">
+	<style>
+#footer {
+    padding: 15px 0;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+        #userimg{
+            width: 100px;
+            height: 100px;
+        }
+	</style>
+  </head>
+  <body>
+ <div class="navbar-wrapper">
+      <div class="container">
+			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			  <div class="container">
+				<div class="navbar-header">
+				  <a class="navbar-brand" href="index.html" style="font-size:32px;">千锋-创意产品众筹平台</a>
+				</div>
+            <div id="navbar" class="navbar-collapse collapse" style="float:right;">
+              <ul class="nav navbar-nav">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user" th:text="${session.zhanghu}"></i> <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="member"><i class="glyphicon glyphicon-scale"></i> 会员中心</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-comment"></i> 消息</a></li>
+                    <li class="divider"></li>
+                    <li><a href="index.html"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+			  </div>
+			</nav>
+
+      </div>
+    </div>
+
+    <div class="container theme-showcase" role="main">
+      <div class="page-header">
+        <h1>实名认证 - 审核</h1>
+      </div>
+		<form role="form" style="margin-top:20px;" action="/auth_cert2" method="post">
+            <div class="form-group">
+                <label for="realname">账户名称</label>
+                <input name="zhanghu"  type="text" th:value="${user.zhanghu}" class="form-control" id="zhanghu" placeholder="请输入账户名称">
+            </div>
+            <div class="form-group">
+                <label for="realname">邮箱</label>
+                <input name="email" disabled="disabled" type="text" th:value="${user.email}" class="form-control" id="email" placeholder="请输入正确的邮箱地址">
+            </div>
+            <div class="form-group">
+			<label for="realname">真实名称</label>
+			<input name="realname" disabled="disabled" type="text" th:value="${user.username}" class="form-control" id="realname" placeholder="请输入真实名称">
+		  </div>
+		  <div class="form-group">
+			<label for="cardnum">身份证号码</label>
+			<input name="idcard" disabled="disabled" type="text" th:value="${user.idcard}" class="form-control" id="cardnum" placeholder="请输入身份证号码">
+		  </div>
+		  <div class="form-group">
+			<label for="tel">电话号码</label>
+			<input name="phonenum" disabled="disabled" type="text" th:value="${user.phoneNumber}" class="form-control" id="tel" placeholder="请输入电话号码">
+		  </div>
+            <div class="form-group">
+                <label for="realname">手持身份证照片</label>
+                <br>
+                <img id="userimg" th:src="@{${user.userImg}}"  src="img/pic.jpg"/>
+            </div>
+            <div class="form-group">
+                <label for="realname">账户类型</label>
+                <input name="zhType" disabled="disabled" type="text" th:value="${userType}" class="form-control" id="zhType" placeholder="请输入账户类型">
+            </div>
+            <div class="form-group">
+                <label for="realname">审核意见</label>
+                <br>
+                <select name="opinionxx" value="opinion">
+                    <option value="yes">同意</option>
+                    <option value="no">驳回</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="realname">驳回原因</label>
+                <input name="reason" type="text" class="form-control" id="reason" placeholder="请输入驳回原因">
+            </div>
+		  <input type="submit"   class="btn btn-success" value="确认提交"></input>
+		</form>
+
+        </div>
+    <script src="jquery/jquery-2.1.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="script/docs.min.js"></script>
+	<script>
+        $('#myTab a').click(function (e) {
+          e.preventDefault()
+          $(this).tab('show')
+        });        
+	</script>
+  </body>
+</html>

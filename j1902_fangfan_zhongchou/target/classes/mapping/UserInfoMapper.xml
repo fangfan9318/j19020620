@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.j1902.mapper.UserMapper">
+    <!-- private int id;
+    private String zhanghu;
+    private String password;
+    private String email;
+    private String username;
+    private String idcard;
+    private String phoneNumber;
+    private String userImg;
+    private String zhType;
+    private String jsType;
+    private String status;
+    private String opinion;-->
+<resultMap id="userMap" type="com.qf.j1902.pojo.User">
+    <id property="id" column="id"></id>
+    <result property="zhanghu" column="zhanghu"></result>
+    <result property="password" column="password"></result>
+    <result property="email" column="email"></result>
+    <result property="username" column="username"></result>
+    <result property="idcard" column="idcard"></result>
+    <result property="phoneNumber" column="phoneNumber"></result>
+    <result property="userImg" column="userImg"></result>
+    <result property="zhType" column="zhType"></result>
+    <result property="jsType" column="jsType"></result>
+    <result property="status" column="status"></result>
+    <result property="opinion" column="opinion"></result>
+</resultMap>
+    <select id="findUserByJs" resultMap="userMap">
+        select * from userInfo where jsType=#{jsType}
+    </select>
+    <insert id="addUser">
+        insert userInfo(zhanghu,password,email,jsType) values(#{zhanghu},#{password},#{email},#{jsType})
+    </insert>
+    <select id="findAll" resultMap="userMap">
+        select * from userInfo
+    </select>
+    <insert id="add">
+        insert userInfo(zhanghu,password,username,email) values(#{zhanghu},#{password},#{username},#{email})
+    </insert>
+    <select id="getUserById" resultMap="userMap" parameterType="int">
+        select * from userInfo where id=#{id}
+    </select>
+    <update id="updateUser">
+        update userInfo set zhanghu=#{zhanghu},email=#{email},username=#{username} where id=#{id}
+    </update>
+    <delete id="delUser" parameterType="int">
+        delete from userInfo where id=#{id}
+    </delete>
+    <select id="findUserMh" resultMap="userMap" parameterType="string">
+        select * from userInfo where zhanghu like "%${message}%" or username like "%${message}%" or email like "%${message}%"
+    </select>
+    <select id="findUserByZh" resultMap="userMap" parameterType="string">
+        select * from userInfo where zhanghu=#{zhanghu}
+    </select>
+    <update id="updateByZh">
+        update userInfo set email=#{email},username=#{username},
+        idcard=#{idcard},phoneNumber=#{phoneNumber},userImg=#{userImg},
+        zhType=#{zhType},status=#{status} where zhanghu=#{zhanghu}
+    </update>
+    <select id="getUserByStatus" resultMap="userMap" parameterType="string">
+        select * from userInfo where status=#{status}
+    </select>
+    <update id="updateOpByZh">
+        update userInfo set status=#{status},
+         opinion=#{opinion} where zhanghu=#{zhanghu}
+    </update>
+</mapper>

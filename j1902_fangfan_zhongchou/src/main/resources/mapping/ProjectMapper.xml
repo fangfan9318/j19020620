@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--private int id;
+    private String projectType;
+    private String jianjie;-->
+<mapper namespace="com.qf.j1902.mapper.ProjectMapper">
+<resultMap id="projectMap" type="com.qf.j1902.pojo.ProjectType">
+    <id property="id" column="id"></id>
+    <result property="projectType" column="projectType"></result>
+    <result property="jianjie" column="jianjie"></result>
+</resultMap>
+    <select id="findAll" resultMap="projectMap">
+        select * from projecttype
+    </select>
+    <insert id="addProjectType">
+        insert projecttype(projectType,jianjie) values(#{projectType},#{jianjie})
+    </insert>
+    <select id="getProjectTypeById" parameterType="int" resultMap="projectMap">
+        select * from projecttype where id=#{id}
+    </select>
+    <update id="updateProjectType">
+        update projecttype set projectType=#{projectType},jianjie=#{jianjie} where id=#{id}
+    </update>
+    <delete id="delProjectType" parameterType="int">
+        delete from projecttype where id=#{id}
+    </delete>
+</mapper>
